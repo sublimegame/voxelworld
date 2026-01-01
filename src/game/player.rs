@@ -361,7 +361,7 @@ impl Player {
                 self.uncollide_x(&block_hitbox);
             }
 
-            if !self.standing_on_block(world) && self.crouching {
+            if !self.standing_on_block(world) && self.crouching && !self.flying {
                 self.position.x -= vx;
             }
 
@@ -373,7 +373,7 @@ impl Player {
                 self.uncollide_z(&block_hitbox);
             }
 
-            if !self.standing_on_block(world) && self.crouching {
+            if !self.standing_on_block(world) && self.crouching && !self.flying {
                 self.position.z -= vz;
             }
 
