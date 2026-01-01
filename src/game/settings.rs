@@ -28,10 +28,16 @@ fn cloud_display_to_string(cloud_display: CloudDisplay) -> String {
 pub const MIN_RENDER_DIST: u32 = 3;
 pub const DEFAULT_RENDER_DIST: u32 = 7;
 pub const MAX_RENDER_DIST: u32 = 16;
+pub const MIN_MOUSE_SENSITIVITY: u32 = 10;
+pub const MAX_MOUSE_SENSITIVITY: u32 = 200;
+pub const DEFAULT_MOUSE_SENSITIVITY_MULTIPLIER: u32 = 100;
+pub const MOUSE_SENSITIVITY: f32 = 0.1;
 
 pub struct Settings {
     pub cloud_display: CloudDisplay,
     pub render_distance: u32,
+    //Expressed as a percent
+    pub mouse_sensitivity_multiplier: u32,
 }
 
 impl Settings {
@@ -39,6 +45,7 @@ impl Settings {
         Self {
             cloud_display: CloudDisplay::Fancy,
             render_distance: DEFAULT_RENDER_DIST,
+            mouse_sensitivity_multiplier: DEFAULT_MOUSE_SENSITIVITY_MULTIPLIER,
         }
     }
 
@@ -61,6 +68,11 @@ impl Settings {
                 .parse::<u32>()
                 .unwrap_or(DEFAULT_RENDER_DIST)
                 .clamp(MIN_RENDER_DIST, MAX_RENDER_DIST),
+            mouse_sensitivity_multiplier: entries[0]
+                .get_var("mouse_sensitivity")
+                .parse::<u32>()
+                .unwrap_or(DEFAULT_MOUSE_SENSITIVITY_MULTIPLIER)
+                .clamp(MIN_MOUSE_SENSITIVITY, MAX_MOUSE_SENSITIVITY),
         }
     }
 
@@ -70,6 +82,10 @@ impl Settings {
         entry.add_string(
             "cloud_display",
             &cloud_display_to_string(self.cloud_display),
+        );
+        entry.add_integer(
+            "mouse_sensitivity",
+            self.mouse_sensitivity_multiplier as i64,
         );
 
         let settings_entry_str = entry.to_impfile_string();
@@ -84,5 +100,10 @@ impl Settings {
         if let Err(msg) = res {
             eprintln!("E: Failed to save settings: {msg}");
         }
+    }
+
+    pub fn mouse_sensitivity(&self) -> f32 {
+        //Mouse sensitivity multiplier is expressed as a percent
+        self.mouse_sensitivity_multiplier as f32 / 100.0 * MOUSE_SENSITIVITY
     }
 }

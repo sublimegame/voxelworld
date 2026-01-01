@@ -1,7 +1,10 @@
 use super::transparent_frame;
 use super::{egui_backend, menu_text};
 use super::{init_egui_input_state, set_ui_gl_state};
-use crate::game::settings::{CloudDisplay, Settings, MAX_RENDER_DIST, MIN_RENDER_DIST};
+use crate::game::settings::{
+    CloudDisplay, Settings, MAX_MOUSE_SENSITIVITY, MAX_RENDER_DIST, MIN_MOUSE_SENSITIVITY,
+    MIN_RENDER_DIST,
+};
 use crate::game::{EventHandler, Game};
 use crate::{gfx, gui, SETTINGS_PATH};
 use egui_backend::egui::{self, vec2, Color32, Pos2, Style, Ui};
@@ -56,6 +59,22 @@ fn display_settings_menu(ui: &mut Ui, settings: &mut Settings) {
         settings.cloud_display = CloudDisplay::Disabled;
     }
 
+    //Mouse sensitivity slider
+    ui.add_space(24.0);
+    ui.heading(menu_text("Mouse Sensitivity", 32.0, Color32::WHITE));
+    let sensitivity_range = MIN_MOUSE_SENSITIVITY..=MAX_MOUSE_SENSITIVITY;
+    let mouse_sensitivity_slider = egui::Slider::new(
+        &mut settings.mouse_sensitivity_multiplier,
+        sensitivity_range,
+    )
+    .text(menu_text("%", 14.0, Color32::WHITE));
+    let spacing = &ui.style().spacing;
+    ui.add_sized(
+        [spacing.slider_width, spacing.slider_rail_height],
+        mouse_sensitivity_slider,
+    );
+
+    //Reset to defaults button
     ui.add_space(24.0);
     if ui
         .button(menu_text("Reset to Defaults", 24.0, Color32::WHITE))

@@ -177,7 +177,8 @@ pub fn run(gamestate: &mut Game, window: &mut PWindow, glfw: &mut Glfw, events: 
 
         update::handle_input_actions(gamestate);
         if !respawned {
-            update::rotate_player(gamestate, 0.06, window);
+            let sensitivity = gamestate.settings.mouse_sensitivity();
+            update::rotate_player(gamestate, sensitivity, window);
             update::update_game(gamestate, &mut chunktables, dt);
         }
 
