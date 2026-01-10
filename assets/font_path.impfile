@@ -1,0 +1,7 @@
+# This is the file that contains the path to the font used by the game.
+# If you want to use a different font, simply change `font_path` to the path
+# of the new font.
+
+"path" {
+	"font_path" = "assets/fonts/pixeloid/PixeloidSans.ttf";
+}

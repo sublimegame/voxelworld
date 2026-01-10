@@ -51,21 +51,6 @@ pub enum BlockMenuShape {
     Stair,
 }
 
-//Application config values, these are not meant to be changed by normal users
-struct Config {
-    font_path: String,
-    block_menu: Vec<u8>,
-}
-
-impl Config {
-    pub fn default() -> Self {
-        Self {
-            font_path: String::new(),
-            block_menu: vec![],
-        }
-    }
-}
-
 //Initialize window, call this at the beginning of the game
 pub fn init_window(glfw: &mut glfw::Glfw) -> (PWindow, EventHandler) {
     glfw.window_hint(glfw::WindowHint::ContextVersion(3, 3));
@@ -130,8 +115,7 @@ pub struct Game {
     pub models: ModelManager,
     pub shaders: ShaderManager,
     pub textures: TextureManager,
-    //Config
-    cfg: Config,
+    block_menu: Vec<u8>,
     //Debug info
     display_debug: bool,
     pub invert_backface_culling: bool,
@@ -179,7 +163,7 @@ impl Game {
             models: ModelManager::new(),
             shaders: ShaderManager::new(),
             textures: TextureManager::new(),
-            cfg: Config::default(),
+            block_menu: vec![],
             display_debug: false,
             invert_backface_culling: false,
             block_menu_shape: BlockMenuShape::Normal,
@@ -239,16 +223,25 @@ impl Game {
         }
     }
 
-    pub fn load_config(&mut self, path: &str) {
+    fn load_font_path(&mut self, path: &str) -> Result<String, ()> {
         let entries = impfile::parse_file(path);
         if entries.is_empty() {
-            eprintln!("Error: empty config file");
-            return;
+            eprintln!("Error: empty font path file");
+            return Err(());
         }
         let e = &entries[0];
-        self.cfg.font_path = e.get_var("font_path");
+        Ok(e.get_var("font_path"))
+    }
 
-        self.cfg.block_menu = e
+    pub fn load_block_menu(&mut self, path: &str) {
+        let entries = impfile::parse_file(path);
+        if entries.is_empty() {
+            eprintln!("Error: empty block menu file");
+            return;
+        }
+
+        let e = &entries[0];
+        self.block_menu = e
             .get_var("block_menu")
             .split(",")
             .map(|s| s.parse::<u8>().unwrap_or(1))
@@ -260,7 +253,7 @@ impl Game {
     }
 
     pub fn get_block_menu(&self) -> &[u8] {
-        &self.cfg.block_menu
+        &self.block_menu
     }
 
     pub fn get_block_menu_shape(&self) -> BlockMenuShape {

@@ -6,7 +6,6 @@ set VOXELWORLD_DIR=voxelworld-windows
 rmdir /S release\
 mkdir release\%VOXELWORLD_DIR%
 copy target\release\voxelworld.exe release\%VOXELWORLD_DIR%
-copy cfg.impfile release\%VOXELWORLD_DIR%
 Xcopy /E /I assets\ release\%VOXELWORLD_DIR%\assets\
 cd release\
 Rem NOTE: You need 7-zip installed to use this script

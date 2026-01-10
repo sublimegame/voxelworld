@@ -42,7 +42,10 @@ impl Game {
     }
 
     pub fn load_assets(&mut self) {
-        load_font(&self.cfg.font_path, &mut self.fonts);
+        let font_path = self.load_font_path("assets/font_path.impfile");
+        if let Ok(font_path) = font_path {
+            load_font(&font_path, &mut self.fonts);
+        }
         self.models.add_default_models();
         self.shaders.load_shaders("assets/shaders.impfile");
         self.textures.load_textures("assets/textures.impfile");
