@@ -50,7 +50,7 @@ pub fn get_check_valid_fn(block: u8) -> Option<ValidBlockFn> {
             !below.transparent() && below.id != EMPTY_BLOCK
         }),
         //Wheat, cotton, and flower seeds
-        50..=53 | 77 | 98 | 103 | 105 | 107 => {
+        50..=53 | 77 | 98 | 103 | 105 | 107 | 109 => {
             Some(|world, x, y, z| check_below_valid(world, x, y, z, &[43, 45]))
         }
         //Sugar cane
@@ -71,6 +71,10 @@ pub fn get_check_valid_fn(block: u8) -> Option<ValidBlockFn> {
         92 => Some(|world, x, y, z| check_below_valid(world, x, y, z, &[1, 4, 17, 86, 87])),
         //Cotton
         99..=102 => Some(|world, x, y, z| check_below_valid(world, x, y, z, &[1, 4, 17, 43, 45])),
+        //White flower
+        110 | 111 => {
+            Some(|world, x, y, z| check_below_valid(world, x, y, z, &[1, 4, 17, 43, 45, 86, 87]))
+        },
         _ => None,
     }
 }

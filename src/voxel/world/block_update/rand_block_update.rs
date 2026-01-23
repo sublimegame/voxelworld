@@ -330,6 +330,8 @@ impl World {
                     106 => grow_wheat(self, x, y, z, 55 - 1, to_update),
                     //Blue flower
                     108 => grow_wheat(self, x, y, z, 56 - 1, to_update),
+                    //White flower
+                    109 | 110 => grow_wheat(self, x, y, z, block.id, to_update),
                     //Sugar cane
                     69 => grow_sugarcane(self, x, y, z, to_update),
                     //Grow cactus

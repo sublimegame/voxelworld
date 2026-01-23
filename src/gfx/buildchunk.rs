@@ -103,7 +103,7 @@ pub fn add_block_vertices_transparent(
         //Glass
         9 => add_block_vertices_trans(chunk, adj_chunks, xyz, vert_data, Some(252), Some(253)),
         //Plants
-        47..=56 | 69 | 90 | 92 | 99..=102 | 104 | 106 | 108 => {
+        47..=56 | 69 | 90 | 92 | 99..=102 | 104 | 106 | 108 | 110 | 111 => {
             add_block_vertices_plant(chunk, xyz, vert_data)
         }
         //Everything else

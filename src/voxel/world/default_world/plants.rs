@@ -75,9 +75,12 @@ pub fn generate_plants(
 
         //Cold biome
         if temperature < 25 {
-            if (0..10).contains(&rand_val) {
+            match rand_val {
                 //Mushroom
-                chunk.set_block(*x, h + 1, *z, Block::new_id(48));
+                0..10 => chunk.set_block(*x, h + 1, *z, Block::new_id(48)),
+                //White flower
+                10..15 => chunk.set_block(*x, h + 1, *z, Block::new_id(111)),
+                _ => {}
             }
             continue;
         }

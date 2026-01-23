@@ -183,7 +183,7 @@ impl Hitbox {
             //Ladder
             75 => Self::from_block_orientation(x, y, z, 0.9, block),
             //Seeds (wheat, cotton, or flowers)
-            77 | 98 | 103 | 105 | 107 => {
+            77 | 98 | 103 | 105 | 107 | 109 => {
                 let mut bbox = Self::from_block_orientation(x, y, z, 0.9, block);
                 bbox.dimensions.x *= 0.8;
                 bbox.dimensions.z *= 0.8;
@@ -213,23 +213,39 @@ impl Hitbox {
                 bbox.dimensions.z *= 0.8;
                 bbox
             }
-            //Mushroom, flowers
+            //Mushroom, yellow flower, growing yellow flower
             48 | 55 | 106 => {
                 let mut bbox = Self::from_block_orientation(x, y, z, 0.5, block);
                 bbox.dimensions.x *= 0.3;
                 bbox.dimensions.z *= 0.3;
                 bbox
             }
+            // Red and blue flower
             54 | 56 => {
                 let mut bbox = Self::from_block_orientation(x, y, z, 0.2, block);
                 bbox.dimensions.x *= 0.3;
                 bbox.dimensions.z *= 0.3;
                 bbox
             }
+            //Growing red and blue flowers
             104 | 108 => {
                 let mut bbox = Self::from_block_orientation(x, y, z, 0.4, block);
                 bbox.dimensions.x *= 0.3;
                 bbox.dimensions.z *= 0.3;
+                bbox
+            }
+            //Growing white flower
+            110 => {
+                let mut bbox = Self::from_block_orientation(x, y, z, 0.5, block);
+                bbox.dimensions.x *= 0.5;
+                bbox.dimensions.z *= 0.5;
+                bbox
+            }
+            //White flower
+            111 => {
+                let mut bbox = Self::from_block_orientation(x, y, z, 0.1, block);
+                bbox.dimensions.x *= 0.5;
+                bbox.dimensions.z *= 0.5;
                 bbox
             }
             //Sugar cane

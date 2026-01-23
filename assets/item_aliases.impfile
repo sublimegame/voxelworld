@@ -100,6 +100,8 @@
 	"red_flower_seeds" = "block,103,0,1";
 	"yellow_flower_seeds" = "block,105,0,1";
 	"blue_flower_seeds" = "block,107,0,1";
+	"white_flower_seeds" = "block,109,0,1";
+	"white_flower" = "block,111,0,1";
 
 	"companion_cube" = "block,255,0,1";
 

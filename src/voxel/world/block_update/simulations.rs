@@ -206,6 +206,8 @@ pub fn run_test_simulations(args: &[String]) {
         simulate_crop_growth(100, "yellow flowers (slow)", 105, 55, 45),
         simulate_crop_growth(100, "blue flowers", 107, 56, 43),
         simulate_crop_growth(100, "blue flowers (slow)", 107, 56, 45),
+        simulate_crop_growth(100, "white flowers", 109, 111, 43),
+        simulate_crop_growth(100, "white flowers (slow)", 109, 111, 45),
     ];
     //Output results
     eprintln!();

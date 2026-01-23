@@ -150,6 +150,12 @@ pub fn init_voxel_flags() {
         set_plant_flags(106);
         //growing blue flower
         set_plant_flags(108);
+        //white flower seed
+        set_seed_flags(109);
+        //growing white flower
+        set_plant_flags(110);
+        //white flower
+        set_plant_flags(111);
     }
 }
 

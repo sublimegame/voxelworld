@@ -203,6 +203,11 @@
 	"wood_hoe|stone_hoe|iron_hoe|gold_hoe|diamond_hoe|rainbow_hoe|aqua_hoe" = "block,107,0,2/3.0|block,107,0,3/2.0";
 }
 
+"white_flower" {
+	"empty" = "white_flower/1.0";
+	"wood_hoe|stone_hoe|iron_hoe|gold_hoe|diamond_hoe|rainbow_hoe|aqua_hoe" = "block,109,0,2/3.0|block,109,0,3/2.0";
+}
+
 # Not fully grown flowers
 "104" {
 	"empty" = "red_flower_seeds/1.0";
@@ -214,6 +219,10 @@
 
 "108" {
 	"empty" = "blue_flower_seeds/1.0";
+}
+
+"110" {
+	"empty" = "white_flower_seeds/1.0";
 }
 
 # Wheat that is not fully grown

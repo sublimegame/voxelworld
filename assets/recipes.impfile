@@ -524,6 +524,14 @@
 	"amt" = "4";
 }
 
+"white_dye" {
+	"width" = "1";
+	"height" = "1";
+	"items" = "white_flower";
+	"output" = "white_dye";
+	"amt" = "4";
+}
+
 "orange_dye" {
 	"width" = "2";
 	"height" = "1";
