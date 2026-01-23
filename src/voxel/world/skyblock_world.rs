@@ -163,8 +163,10 @@ fn gen_flower_island(chunk: &mut Chunk) {
     chunk.set_block_relative(6, 3, 8, Block::new_id(55));
     //Blue flower
     chunk.set_block_relative(8, 3, 6, Block::new_id(56));
+    //White flower
+    chunk.set_block_relative(8, 3, 8, Block::new_id(111));
     //Cotton
-    chunk.set_block_relative(8, 3, 8, Block::new_id(102));
+    chunk.set_block_relative(7, 3, 7, Block::new_id(102));
 }
 
 fn gen_skyblock_chunk(chunk: &mut Chunk) {
