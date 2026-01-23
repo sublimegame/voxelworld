@@ -550,6 +550,33 @@
 	"shapeless" = "true";
 }
 
+"dark_gray_dye" {
+	"width" = "2";
+	"height" = "1";
+	"items" = "black_dye|white_dye";
+	"output" = "dark_gray_dye";
+	"amt" = "2";
+	"shapeless" = "true";
+}
+
+"gray_dye" {
+	"width" = "2";
+	"height" = "1";
+	"items" = "dark_gray_dye|white_dye";
+	"output" = "gray_dye";
+	"amt" = "2";
+	"shapeless" = "true";
+}
+
+"pink_dye" {
+	"width" = "2";
+	"height" = "1";
+	"items" = "red_dye|white_dye";
+	"output" = "pink_dye";
+	"amt" = "2";
+	"shapeless" = "true";
+}
+
 "brown_dye_1" {
 	"width" = "2";
 	"height" = "1";
