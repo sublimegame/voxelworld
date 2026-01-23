@@ -74,7 +74,7 @@ pub fn get_check_valid_fn(block: u8) -> Option<ValidBlockFn> {
         //White flower
         110 | 111 => {
             Some(|world, x, y, z| check_below_valid(world, x, y, z, &[1, 4, 17, 43, 45, 86, 87]))
-        },
+        }
         _ => None,
     }
 }

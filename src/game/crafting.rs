@@ -239,7 +239,7 @@ fn generate_stair_recipe(block: Block) -> Recipe {
 fn generate_wool_recipes() -> Vec<Recipe> {
     const WHITE_WOOL_ID: u8 = 57;
     const WHITE_DYE_ID: u8 = 96;
-    (1..=11)
+    let mut wool_recipes: Vec<Recipe> = (1..=11)
         .map(|index| {
             let mut grid = Inventory::empty_with_sz(2, 1);
             //Wool
@@ -254,7 +254,23 @@ fn generate_wool_recipes() -> Vec<Recipe> {
                 shapeless: true,
             }
         })
-        .collect()
+        .collect();
+    let white_wool_recipes: Vec<Recipe> = (1..=11)
+        .map(|index| {
+            let mut grid = Inventory::empty_with_sz(2, 1);
+            //Wool
+            grid.set_item(0, 0, Item::Block(Block::new_id(WHITE_WOOL_ID + index), 1));
+            grid.set_item(1, 0, Item::Sprite(WHITE_DYE_ID as u16, 1));
+            Recipe {
+                ingredients: grid,
+                output: Item::Block(Block::new_id(WHITE_WOOL_ID), 1),
+                reflect: false,
+                shapeless: true,
+            }
+        })
+        .collect();
+    wool_recipes.extend(white_wool_recipes);
+    wool_recipes
 }
 
 fn get_fuel_from_entry(entry: Entry, item_aliases: &ItemAliases) -> Vec<(Item, f32)> {
