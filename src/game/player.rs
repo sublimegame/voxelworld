@@ -650,4 +650,9 @@ impl Player {
         let pos = self.position + vec3(0.0, PLAYER_HEIGHT / 4.0, 0.0);
         DroppedItem::thrown_item(item, pos.x, pos.y, pos.z, dir * 6.0)
     }
+
+    // Sets the y velocity to be 0
+    pub fn clear_velocity_y(&mut self) {
+        self.velocity_y = 0.0;
+    }
 }

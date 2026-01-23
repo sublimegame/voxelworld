@@ -107,6 +107,9 @@ impl Game {
 
         if self.display_inventory {
             self.player.speed = 0.0;
+            if self.player.flying {
+                self.player.clear_velocity_y()
+            }
             return;
         }
 
